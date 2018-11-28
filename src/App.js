@@ -175,7 +175,6 @@ class App extends Component {
           >
             More
           </ButtonWithLoading>
-          }
         </div>
       </div>
     )
