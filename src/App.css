@@ -14,7 +14,7 @@
   display: flex;
   line-height: 24px;
   font-size: 16px;
-  padding: 5px 10px;
+  padding: 8px 10px;
   justify-content: space-between;
   background-color: #ff6600;
   color: #fff;
@@ -59,13 +59,28 @@
   cursor: pointer;
 }
 
+.button-sort {
+  border-width: 0;
+  background: transparent;
+  color: #fff;
+  text-align: inherit;
+  -webkit-font-smoothing: inherit;
+  padding: 4px;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.button-sort:hover {
+  border-width: 0;
+}
+
 .dismiss {
   color: #000000;
 }
 
 .button-active {
-  border-radius: 0;
-  border-bottom: 1px solid #38BB6C;
+  font-weight: bold;
+  color: #000000;
 }
 
 .search-button {

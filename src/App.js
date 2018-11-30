@@ -5,6 +5,12 @@ import logo from './logo.svg';
 import { sortBy } from 'lodash';
 import classNames from 'classnames';
 import './App.css';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faSortDown, faSortUp);
+
 
 const DEFAULT_QUERY = 'redux';
 const DEFAULT_HPP = '100';
@@ -253,6 +259,7 @@ class Table extends Component {
             sortKey={'TITLE'}
             onSort={this.onSort}
             activeSortKey={sortKey}
+            isSortReverse={isSortReverse}
           >
             Title
           </Sort>
@@ -262,6 +269,7 @@ class Table extends Component {
             sortKey={'AUTHOR'}
             onSort={this.onSort}
             activeSortKey={sortKey}
+            isSortReverse={isSortReverse}
           >
             Author
           </Sort>
@@ -271,6 +279,7 @@ class Table extends Component {
             sortKey={'COMMENTS'}
             onSort={this.onSort}
             activeSortKey={sortKey}
+            isSortReverse={isSortReverse}
           >
             Comments
           </Sort>
@@ -280,6 +289,7 @@ class Table extends Component {
             sortKey={'POINTS'}
             onSort={this.onSort}
             activeSortKey={sortKey}
+            isSortReverse={isSortReverse}
           >
             Points
           </Sort>
@@ -351,11 +361,19 @@ const Sort = ({
   sortKey,
   activeSortKey,
   onSort,
-  children
+  children,
+  isSortReverse
 }) => {
+    
+    const isActive = sortKey === activeSortKey;
+
+    const sortIcon = isSortReverse ?
+      <FontAwesomeIcon icon="sort-up" transform="down-4" className="fa-fw"/>
+      : <FontAwesomeIcon icon="sort-down" transform="up-2" className="fa-fw" />
+
     const sortClass = classNames(
-      'button-inline',
-      { 'button-active': sortKey === activeSortKey}
+      'button-sort',
+      { 'button-active': isActive}
     );
     
     return (
@@ -364,8 +382,9 @@ const Sort = ({
       className={sortClass}
       >
       {children}
-    </Button>
-  )
+      { isActive && sortIcon }
+      </Button>
+    )
 }
   
   Button.defaultProps = {
